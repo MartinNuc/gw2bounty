@@ -1,0 +1,51 @@
+
+{block content}
+<div class="row">
+    <div class="span8">
+        <h2>{!_"Planned guild missions"}</h2>
+    </div>
+    <div class="span4 pull-right"
+         <p><a class="btn pull-right btn-large btn-success" href="{plink GuildMissions:new}">Plan Guild Mission</a></p>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>{!_'Planned start'}</th>
+            <th>{!_'Guild'}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $future_missions as $mission}
+        <tr>
+            <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M:%S'}</td>
+            <td>{$mission->ref('guild')->name}</td>
+            <td><p><a class="btn pull-right btn-primary" href="{plink GuildMissions:new}">Start searching for bosses</a></p></td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+
+{if count($past_missions) > 0}
+<h2>{!_"Guild mission history"}</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>{!_'Planned start'}</th>
+            <th>{!_'Guild'}</th>
+            <th>{!_'State'}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $past_missions as $mission}
+        <tr>
+            
+            <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M:%S'}</td>
+            <td>{$mission->ref('guild')->name}</td>
+            <td>{$mission->ref('state')->description}</td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+{/if}

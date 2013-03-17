@@ -1,18 +1,14 @@
 <?php
 
-use Kdyby\BootstrapFormRenderer\BootstrapRenderer;
-use Nette\Utils\Html;
-use Nette\Application\UI\Form;
 /**
- * Description of RegisterGuildMaster
+ * Description of GuildMissionsPresenter
  *
  * @author mist
  */
-class RegisterGuildMasterPresenter extends BasePresenter {
+class GuildMissionsPresenter extends BasePresenter {
 
-    /** @var Todo\TaskRepository */
-    private $guildmasterRepository;
-
+    private $missionRepository;
+    
     /**
      * (non-phpDoc)
      *
@@ -20,9 +16,14 @@ class RegisterGuildMasterPresenter extends BasePresenter {
      */
     protected function startup() {
         parent::startup();
-        $this->guildmasterRepository = $this->context->guildMasterRepository;
+        $this->missionRepository = $this->context->missionRepository;
+    }
+
+    public function actionDefault() {
+        
     }
     
+
     protected  function createComponentRegisterForm($name) {
         $form = new Form($this, $name);
         
@@ -55,12 +56,11 @@ class RegisterGuildMasterPresenter extends BasePresenter {
     }
 
 
-    public function actionDefault() {
-        
+    public function renderDefault() {
+        $this->template->future_missions = $this->missionRepository->findAll()
+                ->where('mission.timestamp >= ?', \Nette\DateTime::from(''))->order('mission.timestamp');
+        $this->template->past_missions = $this->missionRepository->findAll()
+                ->where('mission.timestamp < ?', \Nette\DateTime::from(''))->order('mission.timestamp');
     }
 
-    public function renderDefault() {
-        $this->template->registerForm = $this['registerForm'];
-    }
-    
 }

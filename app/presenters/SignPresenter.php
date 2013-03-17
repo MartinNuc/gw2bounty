@@ -45,12 +45,12 @@ class SignPresenter extends BasePresenter
 
 		try {
 			$this->getUser()->login($values->username, $values->password);
+                        $this->redirect('GuildMissions:');
 		} catch (Nette\Security\AuthenticationException $e) {
 			$form->addError($e->getMessage());
+                        $this->redirect('Homepage:');
 			return;
 		}
-
-		$this->redirect('Homepage:');
 	}
 
 

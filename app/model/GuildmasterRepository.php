@@ -9,7 +9,7 @@ class GuildmasterRepository extends Repository
         return $this->getTable()->insert(array(
             'login' => $username,
             'password' => $password,
-            'game_nick' => $gamenick
+            'gamenick' => $gamenick
         ));
     }
 }

@@ -25,11 +25,54 @@
     </head>
 
     <body>
-        <script> document.body.className+=' js' </script>
-
-        <div n:foreach="$flashes as $flash" class="alert {$flash->type}">{$flash->message}</div>
+        <script> document.body.className+=' js'
+        $(function () {
+            $.nette.init();
+        });
+        </script>
 
         <div class="container">
+            <div class="page-header">
+                <h2>Guild Wars 2 Bounty Mission Organiser</h2>
+            </div>
+            <div class="masthead">
+
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                        <ul class="nav">
+                            {if $user->isLoggedIn() == false}
+                                <li {if $presenter->getName()=="Homepage"}class="active"{/if}>
+                                    <a href="{plink Homepage:}">{!_"Home"}</a>
+                                </li>
+                                <li {if $presenter->getName()=="Calendar"}class="active"{/if}>
+                                    <a href="{plink Calendar:}">{!_"Calendar"}</a>
+                                </li>
+                                <li {if $presenter->getName()=="Sign"}class="active"{/if}>
+                                    <a href="{plink Sign:in}">{!_"Login"}</a>
+                                </li>
+                            {else}
+                                <li {if $presenter->getName()=="GuildMissions"}class="active"{/if}>
+                                    <a href="{plink GuildMissions:}">{!_"Guild missions"}</a>
+                                </li>
+                                <li {if $presenter->getName()=="Calendar"}class="active"{/if}>
+                                    <a href="{plink Calendar:}">{!_"Calendar"}</a>
+                                </li>
+                                <li {if $presenter->getName()=="BossOverview"}class="active"{/if}>
+                                    <a href="{plink BossOverview:}">{!_"Boss overview"}</a>
+                                </li>
+                                <li>
+                                    <a href="{plink Sign:out}">{!_"Logout"}</a>
+                                </li>
+                            {/if}
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div n:foreach="$flashes as $flash" class="alert {$flash->type}">{$flash->message}</div>
+
             {include #content}
         </div>
 

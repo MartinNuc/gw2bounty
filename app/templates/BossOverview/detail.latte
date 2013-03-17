@@ -1,0 +1,23 @@
+
+{block content}
+<div class="row">
+    <div class="span5 pull-right">
+        <img src="{$boss->faceurl}">
+    </div>
+    <div class="span6 offset1">
+        <h3>Info</h3>
+        <p>
+            Map: {$boss->map}<br>
+            {if $boss->last_seen != NULL}
+                Last seen: {$boss->last_seen|date:'%d.%m.%Y %H:%M:%S'}<br>
+            {else}
+                Last seen: -no data-<br>
+            {/if}
+            Dufny link: <a target="_blank" href="{$boss->descriptionurl}">{$boss->descriptionurl}</a>
+        </p>
+    </div>
+</div>
+
+<div class="map">
+    <img src="{$boss->mapurl}">
+</div>

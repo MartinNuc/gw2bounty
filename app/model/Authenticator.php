@@ -39,7 +39,7 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 	public function authenticate(array $credentials)
 	{
 		list($username, $password) = $credentials;
-		$row = $this->database->table('users')->where('username', $username)->fetch();
+		$row = $this->database->table('guildmaster')->where('login', $username)->fetch();
 
 		if (!$row) {
 			throw new Security\AuthenticationException('The username or password is incorrect.', self::IDENTITY_NOT_FOUND);
@@ -50,7 +50,7 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 		}
 
 		unset($row->password);
-		return new Security\Identity($row->id, $row->role, $row->toArray());
+		return new Security\Identity($row->id, "guildmaster", $row->toArray());
 	}
 
 	/**

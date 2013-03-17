@@ -1,0 +1,20 @@
+
+{block content}
+<table class="table">
+    <thead>
+        <tr>
+            <th>{!_'Name'}</th>
+            <th>{!_'Location'}</th>
+            <th>{!_'Last seen'}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $bosses as $boss}
+        <tr>
+            <td><a href="{plink BossOverview:detail, $boss->id}">{$boss->name}</a></td>
+            <td>{$boss->map}</td>
+            <td>{$boss->last_seen|date:'%d.%m.%Y %H:%M:%S'}</td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
