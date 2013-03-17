@@ -42,18 +42,16 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 		$row = $this->database->table('users')->where('username', $username)->fetch();
 
 		if (!$row) {
-			throw new Security\AuthenticationException('The username is incorrect.', self::IDENTITY_NOT_FOUND);
+			throw new Security\AuthenticationException('The username or password is incorrect.', self::IDENTITY_NOT_FOUND);
 		}
 
 		if ($row->password !== $this->calculateHash($password, $row->password)) {
-			throw new Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
+			throw new Security\AuthenticationException('The password or password is incorrect.', self::INVALID_CREDENTIAL);
 		}
 
 		unset($row->password);
 		return new Security\Identity($row->id, $row->role, $row->toArray());
 	}
-
-
 
 	/**
 	 * Computes salted password hash.
@@ -65,7 +63,7 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 		if ($password === Strings::upper($password)) { // perhaps caps lock is on
 			$password = Strings::lower($password);
 		}
-		return crypt($password, $salt ?: '$2a$07$' . Strings::random(22));
+		return crypt($password, $salt ?: '$2ashlieghslig$gwhegilh07$' . Strings::random(22));
 	}
 
 }

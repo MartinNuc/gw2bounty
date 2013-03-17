@@ -8,30 +8,42 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="robots" content="{$robots}" n:ifset="$robots">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta name="robots" content="{$robots}" n:ifset="$robots">
 
-	<title>{block title|striptags|upper}Nette Application Skeleton{/block}</title>
+        <title>{block title|striptags|upper}Guild Wars 2 Bounty Mission Organiser{/block}</title>
 
-	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
-	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
-	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+        <link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="{$basePath}/css/screen.css" rel="stylesheet" media="screen">
+
+        <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
+        <link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
+        <link rel="shortcut icon" href="{$basePath}/favicon.ico">
 	{block head}{/block}
-</head>
+    </head>
 
-<body>
-	<script> document.body.className+=' js' </script>
+    <body>
+        <script> document.body.className+=' js' </script>
 
-	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+        <div n:foreach="$flashes as $flash" class="alert {$flash->type}">{$flash->message}</div>
 
-	{include #content}
+        <div class="container">
+            {include #content}
+        </div>
 
 	{block scripts}
-	<script src="{$basePath}/js/jquery.js"></script>
-	<script src="{$basePath}/js/netteForms.js"></script>
-	<script src="{$basePath}/js/main.js"></script>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="{$basePath}/js/netteForms.js"></script>
+        <script src="{$basePath}/js/main.js"></script>
+        <script src="{$basePath}/js/bootstrap.min.js"></script>
+        <script src="{$basePath}/js/nette.ajax.js"></script>
+        <script>
+$(function () {
+    $.nette.init();
+});
+        </script>
 	{/block}
-</body>
+    </body>
 </html>

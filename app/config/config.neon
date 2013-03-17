@@ -5,33 +5,59 @@
 # http://nette.org/security-warning
 #
 common:
-	parameters:
+  parameters:
+    langs: {'cs' : 'cs_CZ.utf8', 'en' : 'en_US.utf8'}
 
-	php:
-		date.timezone: Europe/Prague
-		# zlib.output_compression: yes
+  php:
+    date.timezone: Europe/Prague
+    # zlib.output_compression: yes
 
-	nette:
-		application:
-			errorPresenter: Error
+  nette:
+    application:
+      errorPresenter: Error
 
-		database:
-			dsn: 'mysql:host=localhost;dbname=test'
-			user:
-			password:
+    database:
+      default:
+            dsn: "mysql:host=localhost;dbname=gw2bounty"
+            user: root
+            password: okno
+            options: [PDO::MYSQL_ATTR_COMPRESS = true]
+            debugger: true # panel v Debugger baru
+            explain: true  # explain dotazů v Debugger baru
+            reflection: discovered # nebo conventional nebo název třídy
+    session:
+      expiration: 14 days
 
-		session:
-			expiration: 14 days
+    security:
+        roles:
+            guest:
+            member:
+            guildmaster: [member]
 
+  services:
+    database: @nette.database.default
+    translator:
+      class: \h4kuna\GettextLatte(%appDir%/locale/, %langs%)
+      setup:
+        - setSection(@sessionSection('translator')) # optional, enable automatic language detection
+    authenticator: Authenticator
+    routerFactory: RouterFactory
+    router: @routerFactory::createRouter
+    bossRepository: Model\BossRepository(@nette.database.default)
+    guildRepository: Model\GuildRepository(@nette.database.default)
+    guildMasterRepository: Model\GuildmasterRepository(@nette.database.default)
+    missionRepository: Model\MissionRepository(@nette.database.default)
+    regionRepository: Model\RegionRepository(@nette.database.default)
+    searchedBossesRepository: Model\SearchedbossesRepository(@nette.database.default)
+    serverRepository: Model\ServerRepository(@nette.database.default)
+    tierRepository: Model\TierRepository(@nette.database.default)
 
-	services:
-		authenticator: Authenticator
-		routerFactory: RouterFactory
-		router: @routerFactory::createRouter
-
-
-	factories:
-
+  factories:
+    nette.latte:
+      factory: \h4kuna\GettextLatte::latte
+    sessionSection: # optional
+      parameters: [section]
+      class: \Nette\Http\SessionSection(@session, %section%)
 
 production < common:
 
