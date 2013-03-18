@@ -11,7 +11,6 @@
             <tr>
                 <th>{!_'Started'}</th>
                 <th>{!_'Tier'}</th>
-                <th>{!_'Guild'}</th>
                 <th>{!_'Progress'}</th>
                 <th>{!_'Found bosses'}</th>
                 <th></th>
@@ -22,12 +21,11 @@
             <tr>
                 <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M'}</td>
                 <td>{$mission->ref('tier')->name}</td>
-                <td>{$mission->ref('guild')->name}</td>
                 <td>{$mission->ref('state')->description}</td>
                 <td>{$mission->related('searchedbosses')->Sum("searchedbosses.found")} / {$bosses->Count("*")}</td>
                 <td>
                     <p class="pull-right">
-                        <a class="btn btn-primary btn-large" href="{plink GuildMissions:detail, $mission->id}">{!_'Go to summary'}</a>
+                        <a class="btn btn-primary btn-large" href="{plink GuildMissions:detail, $mission->id}">Go to summary</a>
                     </p>
                 </td>
             </tr>
@@ -36,12 +34,10 @@
     </table>
 {/if}
 
+
 <div class="row">
     <div class="span8">
         <h2>{!_"Planned guild missions"}</h2>
-    </div>
-    <div class="span4 pull-right" style="margin-top: 20px">
-         <p><a class="btn pull-right btn-large btn-success" href="{plink GuildMissions:new}">{!_"Plan a new guild mission"}</a></p>
     </div>
 </div>
 {if count($future_missions) > 0}
@@ -50,8 +46,6 @@
         <tr>
             <th>{!_'Planned start'}</th>
             <th>{!_'Tier'}</th>
-            <th>{!_'Guild'}</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -59,44 +53,12 @@
         <tr>
             <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M'}</td>
             <td>{$mission->ref('tier')->name}</td>
-            <td>{$mission->ref('guild')->name}</td>
-            <td>
-                <p class="pull-right">
-                    <a class="btn btn-primary" href="{plink GuildMissions:start, $mission->id}">{!_'Start searching for bosses'}</a>
-                    <a class="btn btn-danger" href="{plink GuildMissions:delete, $mission->id}">{!_'Cancel'}</a>
-                </p>
-            </td>
         </tr>
         {/foreach}
     </tbody>
 </table>
 {else}
 <p>{!_'You have no missions planned. Click on the button Plan mission to set up a new mission.'}</p>
-{/if}
-
-{if count($past_missions) > 0}
-<h2>{!_"Guild mission history"}</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>{!_'Planned start'}</th>
-            <th>{!_'Tier'}</th>
-            <th>{!_'Guild'}</th>
-            <th>{!_'State'}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {foreach $past_missions as $mission}
-        <tr>
-            
-            <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M:%S'}</td>
-            <td>{$mission->ref('tier')->name}</td>
-            <td>{$mission->ref('guild')->name}</td>
-            <td>{!_$mission->ref('state')->description}</td>
-        </tr>
-        {/foreach}
-    </tbody>
-</table>
 {/if}
 
 {/block}

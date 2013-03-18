@@ -20,7 +20,7 @@
         <img src="{$boss->faceurl}">
     </div>
     <div class="span8 offset1">
-        <h3>Info</h3>
+        <h3>{!_'Info'}</h3>
         <table class="table .table-bordered">
             <tr>
                 <td>{!_'Assigned people'}:</td>
@@ -45,12 +45,12 @@
                 <td><a target="_blank" href="{$boss->descriptionurl}">{$boss->descriptionurl}</a></td>
             </tr>
         </table>
-        <a class="btn btn-primary btn-large ajax" href="{plink assign!, $hunt->id}">Assign</a>
+        <a class="btn btn-primary btn-large ajax" href="{plink assign!, $hunt->id}">{!_'Assign'}</a>
         {if $hunt->assignedpeople > 0}
-        <a class="btn btn-primary btn-large ajax" href="{plink unAssign!, $hunt->id}">Unassign</a>
+        <a class="btn btn-primary btn-large ajax" href="{plink unAssign!, $hunt->id}">{!_'Unassign'}</a>
         {/if}
         {if $hunt->found != 0}
-        <a class="btn btn-inverse btn-large ajax" href="{plink respawned!, $hunt->id}">Respawned</a>
+        <a class="btn btn-inverse btn-large ajax" href="{plink respawned!, $hunt->id}">{!_'Respawned'}</a>
         {/if}
     </div>
 </div>
@@ -59,8 +59,8 @@
     <div class="span10 offset3">
         <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>Did you find this boss?</h4>
-            Click to the map on the location where you found him.
+            <h4>{!_'Did you find this boss?'}</h4>
+            {!_'Click to the map on the location where you found him.'}
         </div>
     </div>
 </div>

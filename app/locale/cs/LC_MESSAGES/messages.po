@@ -1,0 +1,515 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gw2Bounty\n"
+"POT-Creation-Date: 2013-03-18 06:03+0100\n"
+"PO-Revision-Date: 2013-03-18 06:04+0100\n"
+"Last-Translator: Martin Nuc <martin@nuc.cz>\n"
+"Language-Team: \n"
+"Language: Czech\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4 ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\\..\\..\\templates\n"
+"X-Poedit-SearchPath-1: ..\\..\\..\\model\n"
+"X-Poedit-SearchPath-2: ..\\..\\..\\presenters\n"
+"X-Poedit-SearchPath-3: ..\\..\\..\\..\\temp\n"
+
+msgid "Guild mission started."
+msgstr "Guild mise odstartována."
+
+msgid "Guild mission finished."
+msgstr "Guild mise dokončena."
+
+msgid "Guild mission canceled."
+msgstr "Guild mise zrušena."
+
+# GuildMissionsPresenter.php:94
+msgid "Tier:"
+msgstr "Tier:"
+
+# GuildMissionsPresenter.php:96
+msgid "Plan this mission"
+msgstr "Naplánovat tuto misi"
+
+msgid "Guild mission planned."
+msgstr "Guild mise naplánována."
+
+msgid "Failed to plan a guild mission."
+msgstr "Nepodařilo se naplánovat misi."
+
+# GuildMissionsPresenter.php:128
+msgid "Show their locations"
+msgstr "Show their locations"
+
+# #-#-#-#-#  5extracted.pot  #-#-#-#-#
+# RegisterGuildMasterPresenter.php:42
+# #-#-#-#-#  6extracted.pot  #-#-#-#-#
+# _Sign.in.latte-a3e470f27c6c7422a12d84ef38f33ad8.php:38
+msgid "New password"
+msgstr "Nové heslo"
+
+# GuildPresenter.php:36
+msgid ""
+"Enter guild password. This password is used by members to log in and "
+"participate on your guild missions."
+msgstr ""
+"Enter guild password. This password is used by members to log in and "
+"participate on your guild missions."
+
+# GuildPresenter.php:38
+msgid "Member password must be at least %d characters long."
+msgstr "Member password must be at least %d characters long."
+
+# GuildPresenter.php:39
+msgid "Save"
+msgstr "Save"
+
+# GuildPresenter.php:53
+msgid "The new password was set. Now you can tell it to guild members."
+msgstr "The new password was set. Now you can tell it to guild members."
+
+# GuildPresenter.php:55
+msgid "Unable to change guild password."
+msgstr "Unable to change guild password."
+
+# RegisterGuildMasterPresenter.php:39
+msgid "Guild master information"
+msgstr "Guild master information"
+
+# RegisterGuildMasterPresenter.php:40
+msgid "Username"
+msgstr "Username"
+
+# RegisterGuildMasterPresenter.php:40
+msgid "Enter username which you want to use for loggin in this application."
+msgstr "Enter username which you want to use for loggin in this application."
+
+# #-#-#-#-#  5extracted.pot  #-#-#-#-#
+# RegisterGuildMasterPresenter.php:42
+# #-#-#-#-#  6extracted.pot  #-#-#-#-#
+# _Sign.in.latte-a3e470f27c6c7422a12d84ef38f33ad8.php:38
+msgid "Password"
+msgstr "Password"
+
+# RegisterGuildMasterPresenter.php:42
+msgid "Enter password which you want to use for loggin in this application."
+msgstr "Enter password which you want to use for loggin in this application."
+
+# RegisterGuildMasterPresenter.php:44
+msgid "Game character"
+msgstr "Game character"
+
+# RegisterGuildMasterPresenter.php:44
+msgid ""
+"Enter your ingame nick. Other guilds may whisper you for a cooperation "
+"during guild missions."
+msgstr ""
+"Enter your ingame nick. Other guilds may whisper you for a cooperation "
+"during guild missions."
+
+# RegisterGuildMasterPresenter.php:57
+msgid "Guild name"
+msgstr "Guild name"
+
+# RegisterGuildMasterPresenter.php:57
+msgid "Enter name of your guild."
+msgstr "Enter name of your guild."
+
+# RegisterGuildMasterPresenter.php:60
+msgid "Server"
+msgstr "Server"
+
+# RegisterGuildMasterPresenter.php:60
+msgid "Choose server which your guild plays on."
+msgstr "Choose server which your guild plays on."
+
+# RegisterGuildMasterPresenter.php:62
+msgid "Register"
+msgstr "Register"
+
+# RegisterGuildMasterPresenter.php:78
+msgid "You were succesfully registred. Now you can log in."
+msgstr "You were succesfully registred. Now you can log in."
+
+# RegisterGuildMasterPresenter.php:85
+msgid "Unable to create your registration. Try different username."
+msgstr "Unable to create your registration. Try different username."
+
+# SignPresenter.php:19
+msgid "Username:"
+msgstr "Username:"
+
+# SignPresenter.php:20
+msgid "Please enter your username."
+msgstr "Please enter your username."
+
+# SignPresenter.php:22
+msgid "Password:"
+msgstr "Password:"
+
+# SignPresenter.php:23
+msgid "Please enter your password."
+msgstr "Please enter your password."
+
+# SignPresenter.php:25
+# SignPresenter.php:38
+msgid "Sign in"
+msgstr "Sign in"
+
+# SignPresenter.php:35
+msgid "Guild access code:"
+msgstr "Guild access code:"
+
+# SignPresenter.php:36
+msgid "Please guild access code."
+msgstr "Please guild access code."
+
+# SignPresenter.php:79
+msgid "You have been signed out."
+msgstr "You have been signed out."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.default.latte-12b6d28104e0189edf3e60a526b96255.php:17
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:44
+msgid "Name"
+msgstr "Jméno"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.default.latte-12b6d28104e0189edf3e60a526b96255.php:18
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:45
+msgid "Location"
+msgstr "Lokace"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.default.latte-12b6d28104e0189edf3e60a526b96255.php:19
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.detail.latte-4842d8c8a62305ea6f0b80cb6d73076c.php:36
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:54
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:47
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:105
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:109
+msgid "Last seen"
+msgstr "Naposled spatřen"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.detail.latte-4842d8c8a62305ea6f0b80cb6d73076c.php:29
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:43
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:16
+msgid "Info"
+msgstr "Informace"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.detail.latte-4842d8c8a62305ea6f0b80cb6d73076c.php:32
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:50
+msgid "Map"
+msgstr "Mapa"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.detail.latte-4842d8c8a62305ea6f0b80cb6d73076c.php:42
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:109
+msgid "no data"
+msgstr "žádná data"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossOverview.detail.latte-4842d8c8a62305ea6f0b80cb6d73076c.php:47
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:65
+msgid "Dulfy link"
+msgstr "Odkaz na Dulfy"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:17
+msgid "Back to the list"
+msgstr "Zpět na seznam"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:46
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:46
+msgid "Assigned people"
+msgstr "Přiřazení lidé"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:71
+msgid "Assign"
+msgstr "Přiřadit"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:74
+msgid "Unassign"
+msgstr "Odpřiřadit"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:77
+msgid "Respawned"
+msgstr "Respawnul se"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:86
+msgid "Did you find this boss?"
+msgstr "Našel jsi bose?"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_BossSearch.default.latte-d2a98b02cdf4e9591636e30f6fc18d07.php:87
+msgid "Click to the map on the location where you found him."
+msgstr "Klikni do mapy na místo, kde jsi ho našel."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Calendar.default.latte-aab16df2ae4fcf12ac2b232d0158360c.php:18
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:65
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:98
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:59
+msgid "Planned start"
+msgstr "Plánovaný začátek"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Calendar.default.latte-aab16df2ae4fcf12ac2b232d0158360c.php:19
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:25
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:67
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:100
+msgid "Guild"
+msgstr "Guilda"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Calendar.default.latte-aab16df2ae4fcf12ac2b232d0158360c.php:20
+msgid "Guild master"
+msgstr "Guild master"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Calendar.default.latte-aab16df2ae4fcf12ac2b232d0158360c.php:37
+msgid "There are no upcoming guild missions."
+msgstr "V databázi nejsou žádné nadcházející události."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Guild.default.latte-22ac1a07789d30f7ba7717f5cc089c3d.php:14
+msgid "Here you can set up the password used by guild members to log in."
+msgstr ""
+"Zde můžete nastavit heslo pro členy vaší guildy, aby se mohli přihlásit."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Guild.default.latte-22ac1a07789d30f7ba7717f5cc089c3d.php:15
+msgid ""
+"You can update guild password whenever you want. But dont forget to tell the "
+"new password to your guild mates."
+msgstr ""
+"Můžete si heslo změnit kdykoliv později. Nezapomeňte pak ale nové heslo říct "
+"členům guildy."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:17
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:17
+msgid "Missions in progress"
+msgstr "Mise právě probíhá"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:23
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:23
+msgid "Started"
+msgstr "Započata"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:24
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:66
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:99
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:24
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:60
+msgid "Tier"
+msgstr "Tier"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:26
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:18
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:25
+msgid "Progress"
+msgstr "Vývoj"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:27
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:26
+msgid "Found bosses"
+msgstr "Nalezení bosové"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:43
+msgid "Go to summary"
+msgstr "Přejít na shrnutí"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:54
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:52
+msgid "Planned guild missions"
+msgstr "Plánované guild mise"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:58
+msgid "Plan a new guild mission"
+msgstr "Naplánovat novou guild misi"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:80
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:28
+msgid "Start searching for bosses"
+msgstr "Zahájit hledání bosů"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:82
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:90
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.member.latte-c68818a04ef802633250672aff735f1d.php:73
+msgid ""
+"You have no missions planned. Click on the button Plan mission to set up a "
+"new mission."
+msgstr ""
+"Nemáte žádné naplánované mise. Klikněte na tlačítko Plánovat misi k jejímu "
+"vytvoření."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:94
+msgid "Guild mission history"
+msgstr "Historie guild misí"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.default.latte-65e52110cd8379d6c4e559621e97d17f.php:101
+msgid "State"
+msgstr "Stav"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:19
+msgid "Found"
+msgstr "Nalezeno"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:33
+msgid "Want go search for a boss?"
+msgstr "Chceš jít najít bose?"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:34
+msgid ""
+"Find the one with the lowest assigned people and click on his name. On the "
+"next page press Assign button to let guild master know that there is one "
+"more person searching for that boss."
+msgstr ""
+"Najdi bose, kterého hledá nejméně lidí a klikni na jeho jméno. Na další "
+"stránce stiskni tlačítko pro přiřazení. Tím dáš guild masterovi vědět, že "
+"daného bose hledá o člověka víc."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:39
+msgid "Go kill bosses"
+msgstr "Jít zabít bose"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:48
+msgid "Found by you?"
+msgstr "Nalezeno vámi"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:80
+msgid "What now?"
+msgstr "Co teď?"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:81
+msgid ""
+"When you kill all bosses press following button and mission will be marked "
+"as complete."
+msgstr ""
+"Až zabijete všechny bose, stiskněte toto tlačítko. Tím označíte misi jako "
+"dokončenou."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:91
+msgid "All bosses killed"
+msgstr "Všichni bosové zabiti"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.detail.latte-85de678d5a9f3a529be0270f2d9f9f13.php:96
+msgid ""
+"Here is the list of bosses with their last known location. Either found by "
+"your players or by someone else."
+msgstr ""
+"Zde je seznam bosů s jejich poslední známou lokací. Ať už nalezenou vašimi "
+"hráči nebo někým jiným."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.kill.latte-e7b35e1beb2af8c602d9a604e37b2c35.php:14
+msgid "Bosses"
+msgstr "Bosové"
+
+# RegisterGuildMasterPresenter.php:60
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.kill.latte-e7b35e1beb2af8c602d9a604e37b2c35.php:15
+#, php-format
+msgid "Choose %s bosses which your guild has to kill."
+msgid_plural "Choose %s bosses which your guild has to kill."
+msgstr[0] "Vyberte 1 bose, kterého má vaše guilda zabít."
+msgstr[1] "Vyberte %s bose, které má vaše guilda zabít."
+msgstr[2] "Vyberte %s bosů, které má vaše guilda zabít."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.new.latte-5b7dea888535bbf715594b72f715009e.php:16
+msgid ""
+"When you plan a guild mission other guilds are able to see it in their "
+"calendar overview."
+msgstr "Když plánujete guild misi, ostatní guildy ji uvidí v kalendáři."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.new.latte-5b7dea888535bbf715594b72f715009e.php:17
+msgid ""
+"Your guild mates are able to see this guild mission as a planned if they are "
+"signed in."
+msgstr ""
+"Členové vaší guildy uvidi tuto misi jako plánovanou, pokud se přihlásí."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_GuildMissions.new.latte-5b7dea888535bbf715594b72f715009e.php:23
+msgid "Start"
+msgstr "Začátek"
+
+# GuildMissionsPresenter.php:96
+msgid "Schedule this mission"
+msgstr "Naplánovat tuto misi"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Homepage.default.latte-2de1bfb334f29c2ee65e92cd3e135245.php:16
+msgid "Bounty missions on turbo!"
+msgstr "Bounty mise naplno!"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Homepage.default.latte-2de1bfb334f29c2ee65e92cd3e135245.php:17
+msgid ""
+"Assign guild members to search for bosses, have overview how the search "
+"progresses,\n"
+" begin the mission with maps of bosses you need with exact position entered "
+"by your guild or ever by some other guild you dont even know."
+msgstr ""
+"Přiřaďte bose členům vaší guildy, mějte přehled, jak probíhá jejich hledání, "
+"začínejte misi s mapou bosů spolus s jejich presnou pozicí, kterou našli ať "
+"už členové vaší guildy nebo nějaké jiné, kterou ani neznáte."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Homepage.default.latte-2de1bfb334f29c2ee65e92cd3e135245.php:21
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:135
+msgid "Join now"
+msgstr "Přidejte se nyní"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_RegisterGuildMaster.default.latte-aff6af891d49180c343ff32a799d2d3f.php:15
+msgid ""
+"Only guild master have to register. Other members will access this site "
+"without registration."
+msgstr ""
+"Pouze guild master se musí registrovat. Ostatní členové budou přistupovat ke "
+"stránce bez registrace."
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_RegisterGuildMaster.default.latte-aff6af891d49180c343ff32a799d2d3f.php:16
+msgid "In game character name is used for communication with other guilds."
+msgstr "Jméno herní postavy se hodí při komunikaci s ostatními guildami."
+
+# _Sign.in.latte-a3e470f27c6c7422a12d84ef38f33ad8.php:22
+msgid "Access code"
+msgstr "Access code"
+
+# _Sign.in.latte-a3e470f27c6c7422a12d84ef38f33ad8.php:35
+msgid "Login"
+msgstr "Login"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Template.default.latte-ec118f1b9b6904f633de15ce4edb6e06.php:36
+msgid "planned"
+msgstr "plánované"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Template.default.latte-ec118f1b9b6904f633de15ce4edb6e06.php:38
+msgid "searching for bosses"
+msgstr "hledání bosů"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Template.default.latte-ec118f1b9b6904f633de15ce4edb6e06.php:40
+msgid "started (killing)"
+msgstr "odstartováno (zabíjí se)"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Template.default.latte-ec118f1b9b6904f633de15ce4edb6e06.php:42
+msgid "finished"
+msgstr "dokončeno"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_Template.default.latte-ec118f1b9b6904f633de15ce4edb6e06.php:44
+msgid "canceled"
+msgstr "zrušeno"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:140
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:162
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:182
+msgid "Calendar"
+msgstr "Kalendář"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:151
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:177
+msgid "Guild missions"
+msgstr "Guild mise"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:156
+msgid "Guild password"
+msgstr "Heslo pro členy"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:167
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:187
+msgid "Boss overview"
+msgstr "Přehled bosů"
+
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:171
+#: ..\..\..\..\temp/cache/_Nette.FileTemplate/_templates._layout.latte-fabe37256e68ac41919e1019adf6e472.php:191
+msgid "Logout"
+msgstr "Odhlásit"

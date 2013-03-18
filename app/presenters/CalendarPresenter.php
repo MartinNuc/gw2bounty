@@ -9,6 +9,7 @@ class CalendarPresenter extends BasePresenter {
 
     private $missionRepository;
     private $guildmasterRepository;
+    private $guildRepository;
     
     /**
      * (non-phpDoc)
@@ -19,6 +20,7 @@ class CalendarPresenter extends BasePresenter {
         parent::startup();
         $this->missionRepository = $this->context->missionRepository;
         $this->guildmasterRepository = $this->context->guildMasterRepository;
+        $this->guildRepository = $this->context->guildRepository;
     }
 
     public function actionDefault() {
@@ -35,7 +37,7 @@ class CalendarPresenter extends BasePresenter {
         }
         else if ($this->user->isInRole('member'))
         {
-            $server = $this->guildmasterRepository->findAll()->where('guildmaster.id', $this->user->getId())->select("guild:server.id")->fetch()->id;
+            $server = $this->guildRepository->findAll()->where('server_id', $this->user->getId())->select("server_id")->fetch()->id;
             $this->template->missions = $this->missionRepository->findAll()
                 ->where('(mission.timestamp >= ? OR mission.state_id = 2 OR mission.state_id = 3)', \Nette\DateTime::from(''))->order('mission.timestamp')
                 ->where('guild.server_id = ?', $server);

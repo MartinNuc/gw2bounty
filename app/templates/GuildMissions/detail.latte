@@ -1,22 +1,35 @@
 
 {block content}
+<div class="row">
+    <div class="span4">
+        <h2>{!_'Info'}</h2>
+        <ul>
+            <li>{!_'Progress'}: <strong>{!_$mission->ref('state')->description}</strong></li>
+            <li>{!_'Found'}: {$mission->related('searchedbosses')->Sum("searchedbosses.found")} / {$allBosses->Count("*")}
+        </ul>
+    </div>
 
-<h2>{!_'Info'}</h2>
-<ul>
-    <li>Progress: <strong>{$mission->ref('state')->description}</strong></li>
-    <li>Found: {$mission->related('searchedbosses')->Sum("searchedbosses.found")} / {$bosses->Count("*")}
-</ul>
 {if $mission->ref('state')->id == 1}
-    <a class="btn btn-primary" href="{plink GuildMissions:start, $mission->id}">Start searching for bosses</a>
+        </div>
+    <a class="btn btn-primary" href="{plink GuildMissions:start, $mission->id}">{!_'Start searching for bosses'}</a>
 {elseif $mission->ref('state')->id == 2}
-    <a class="btn btn-primary" href="{plink GuildMissions:kill, $mission->id}">Go kill bosses</a>
+        <div class="span5 offset3">
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4>{!_'Want go search for a boss?'}</h4>
+                {!_'Find the one with the lowest assigned people and click on his name. On the next page press Assign button to let guild master know that there is one more person searching for that boss.'}
+            </div>
+        </div>
+        <a class="btn btn-primary" href="{plink GuildMissions:kill, $mission->id}">{!_'Go kill bosses'}</a>
+    </div>
     <table class="table">
        <thead>
            <tr>
                <th>{!_'Name'}</th>
                <th>{!_'Location'}</th>
                <th>{!_'Assigned people'}</th>
-               <th>{!_'Found?'}</th>
+               <th>{!_'Last seen'}</th>
+               <th>{!_'Found by you?'}</th>
            </tr>
        </thead>
        <tbody>
@@ -25,6 +38,11 @@
                <td><a href="{plink BossSearch:default, $boss->id}">{$boss->ref('boss')->name}</a></td>
                <td>{$boss->ref('boss')->map}</td>
                <td>{$boss->assignedpeople}</td>
+               <td>
+                    {if isset($boss->ref('boss')->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->timestamp)}
+                        {$boss->ref('boss')->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->timestamp|date:'%d.%m.%Y %H:%M'}
+                    {/if}
+               </td>
                <td>
                    {if $boss->found==1}
                         <i class="icon-ok"></i>
@@ -37,16 +55,43 @@
        </tbody>
    </table>
 {elseif $mission->ref('state')->id == 3}
-    <p>When you kill all bosses press following button and mission will be marked as complete.</p>
-    <a class="btn btn-primary" href="{plink GuildMissions:finish, $mission->id}">All bosses killed</a>
+    {if $user->isInRole('guildmaster') == true}
+        <div class="span5 offset3">
+            <br>
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4>{!_'What now?'}</h4>
+                {!_'When you kill all bosses press following button and mission will be marked as complete.'}
+            </div>
+        </div>
+    {/if}
+    </div>
+    
+    <div class="row">
+        <div class="span5">
+            <a class="btn btn-primary" href="{plink GuildMissions:finish, $mission->id}">{!_'All bosses killed'}</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <p><br>{!_'Here is the list of bosses with their last known location. Either found by your players or by someone else.'}</p>
+        </div>
+    </div>
+    
     
     {assign $i => 0}
     {foreach $hunts as $hunt}
         <h2>{$hunt->ref('boss')->name}</h2>
-        <div class="map">
-            {if $hunt->found != 0}
-                <img id="location{$i}" src="{$basePath}/images/dot.png" style="position: absolute; top: -500px; left: -500px" />
+        <p>
+            {if isset($hunt->ref('boss')->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->timestamp)}
+                {!_'Last seen'}:
+                {$hunt->ref('boss')->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->timestamp|date:'%d.%m.%Y %H:%M'}
+            {else}
+                {!_'Last seen'}: -{!_'no data'}-
             {/if}
+        </p>
+        <div class="map">
+            <img id="location{$i}" src="{$basePath}/images/dot.png" style="position: absolute; top: -500px; left: -500px" />
             <img id="map{$i}" src="{$hunt->ref('boss')->mapurl}">
         </div>
         {assign $i => $i + 1}
@@ -62,8 +107,14 @@
         var t{$i} = new Image();
         t{$i}.src = "{!$hunt->ref('boss')->mapurl}";
         var original_x{$i} = t{$i}.width;
-        var x={$hunt->x};
-        var x={$hunt->y};
+        {if isset($hunt->ref('boss')->related('searchedbosses')->select('searchedbosses.x, searchedbosses.y')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->x)
+            && isset($hunt->ref('boss')->related('searchedbosses')->select('searchedbosses.x, searchedbosses.y')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->y)}
+            var x{$i}={$hunt->ref('boss')->related('searchedbosses')->select('searchedbosses.x')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->x};
+            var y{$i}={$hunt->ref('boss')->related('searchedbosses')->select('searchedbosses.y')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->y};
+        {else}
+            var x{$i}=-500;
+            var y{$i}=-500;
+        {/if}
         {assign $i => $i + 1}
     {/foreach}
     
@@ -75,14 +126,15 @@
             var offset{$i} = map{$i}.offset();
             var img{$i} = document.getElementById('map{$i}'); 
             ratio{$i} = img{$i}.width / original_x{$i} ;
-
-            $('#location').offset({ top: (offset{$i}.top+ratio{$i}*y{$i}-14*ratio{$i}), left: (offset{$i}.left+ratio{$i}*x{$i}-14*ratio{$i})});
+            $('#location{$i}').offset({ top: (offset{$i}.top+ratio{$i}*y{$i}-14*ratio{$i}), left: (offset{$i}.left+ratio{$i}*x{$i}-14*ratio{$i})});
+            
             {assign $i => $i + 1}
         {/foreach}
     }
     
     $(document).ready(function() {   
       redrawlocation();
+    });
       
     $(window).resize(function() {
         clearTimeout(this.id);

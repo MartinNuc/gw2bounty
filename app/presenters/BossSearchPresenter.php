@@ -75,7 +75,7 @@ class BossSearchPresenter extends BasePresenter {
         $this->template->last_seen = $this->searchedbossesRepository->findAll()
                 ->where('boss.id', $this->template->boss->id)
                 ->where('found', 1)
-                ->order('searchedbosses.timestamp')
+                ->order('searchedbosses.timestamp DESC')
                 ->limit(1)
                 ->fetch();
     }

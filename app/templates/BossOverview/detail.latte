@@ -1,29 +1,70 @@
 
 {block content}
+{snippet info}
 <div class="row">
     <div class="span5 pull-right">
         <img src="{$boss->faceurl}">
     </div>
-    <div class="span6 offset1">
-        <h3>Info</h3>
-        <p>
-            <br>Map: {$boss->map}
-            {if isset($boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->timestamp)}
-                <br>Last seen:
-                {$boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->timestamp|date:'%d.%m.%Y %H:%M'}
-            {else}
-                <br>Last seen: -no data-
-            {/if}
-            <br>Dulfy link: <a target="_blank" href="{$boss->descriptionurl}">{$boss->descriptionurl}</a>
-        </p>
+    <div class="span8 offset1">
+        <h3>{!_'Info'}</h3>
+        <table class="table .table-bordered">
+            <tr>
+                <td>{!_'Map'}:</td>
+                <td>{$boss->map}</td>
+            </tr>
+            <tr>
+                <td>{!_'Last seen'}:</td>
+                <td>
+                    {if isset($boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->timestamp)}
+                        {$boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp DESC')->limit(1)->fetch()->timestamp|date:'%d.%m.%Y %H:%M'}
+                   {else}
+                    -{!_'no data'}-
+                    {/if}
+                </td>
+            </tr>           
+            <tr>
+                <td>{!_'Dulfy link'}:</td>
+                <td><a target="_blank" href="{$boss->descriptionurl}">{$boss->descriptionurl}</a></td>
+            </tr>
+        </table>
     </div>
 </div>
 
 <div class="map">
-    <img src="{$boss->mapurl}">
+    <img id="location" src="{$basePath}/images/dot.png" style="position: absolute; top: -500px; left: -500px" />
+    <img id="map" src="{$boss->mapurl}">
 </div>
+{/snippet}
 
 {/block}
 {block scripts}
 {include #parent}
+<script>
+    var t = new Image();
+    t.src = "{!$boss->mapurl}";
+    var original_x = t.width;
+    x={isset($boss->related('searchedbosses')->select('searchedbosses.x')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->x) 
+        ? $boss->related('searchedbosses')->select('searchedbosses.x')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->x : -500};
+    y={isset($boss->related('searchedbosses')->select('searchedbosses.y')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->y) 
+        ? $boss->related('searchedbosses')->select('searchedbosses.y')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->y : -500};
+    
+    function redrawlocation()
+    {
+       var map = $("#map");
+       var offset = map.offset();
+       var img = document.getElementById('map'); 
+       ratio = img.width / original_x ;
+       
+       $('#location').offset({ top: (offset.top+ratio*y-14*ratio), left: (offset.left+ratio*x-14*ratio)});
+    }
+    
+    $(document).ready(function() {   
+      redrawlocation();
+    });
+      
+    $(window).resize(function() {
+        clearTimeout(this.id);
+        this.id = setTimeout(redrawlocation, 500);
+    });
+</script>
 {/block}

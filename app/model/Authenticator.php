@@ -3,17 +3,6 @@
 use Nette\Security,
 	Nette\Utils\Strings;
 
-
-/*
-CREATE TABLE users (
-	id int(11) NOT NULL AUTO_INCREMENT,
-	username varchar(50) NOT NULL,
-	password char(60) NOT NULL,
-	role varchar(20) NOT NULL,
-	PRIMARY KEY (id)
-);
-*/
-
 /**
  * Users authenticator.
  */
@@ -29,8 +18,6 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 		$this->database = $database;
 	}
 
-
-
 	/**
 	 * Performs an authentication.
 	 * @return Nette\Security\Identity
@@ -40,12 +27,12 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 	{
 		list($username, $password) = $credentials;
                 
-                if ($username == "")
+                if ($username == "" && password != "")
                 {
                     // login for guild members
                     $row = $this->database->table('guild')->where('memberpassword', $password)->fetch();
-                    if (count($row) > 0)
-                        return new Security\Identity($row->id, "member", $row->toArray());
+                    if ($row != FALSE && count($row) > 0)
+                        return new Security\Identity($row->id, "member");
                     else
                         throw new Security\AuthenticationException('The access code is incorrect.', self::IDENTITY_NOT_FOUND);
                 }
@@ -62,6 +49,7 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
                     }
 
                     unset($row->password);
+                    return new Security\Identity($row->id, "guildmaster", $row->toArray());
                 }
 	}
 

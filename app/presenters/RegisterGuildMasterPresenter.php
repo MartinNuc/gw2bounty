@@ -72,12 +72,20 @@ class RegisterGuildMasterPresenter extends BasePresenter {
         $server = $form['grouped']['server']->getValue();
         $guildname = $form['grouped']['guildname']->getValue();
         
-        $guildmasterid = $this->guildmasterRepository->createGuildmaster($username, $password, $gamenick);
-        $this->guildRepository->createGuild($guildname, $server, $guildmasterid);
-        
-        $this->flashMessage('You were succesfully registred. Now you can log in.', 'success');
-        
-        $this->redirect('Homepage:default');
+        try {
+            $guildmasterid = $this->guildmasterRepository->createGuildmaster($username, $password, $gamenick);
+            $this->guildRepository->createGuild($guildname, $server, $guildmasterid);
+
+            $this->flashMessage(_('You were succesfully registred. Now you can log in.'), 'success');
+
+            $this->redirect('Guild:default');
+        }
+        catch (Exception $e)
+        {
+            $this->flashMessage(_('Unable to create your registration. Try different username.'), 'alert-error');
+            $this->redirect('this');
+
+        }
 
     }
 

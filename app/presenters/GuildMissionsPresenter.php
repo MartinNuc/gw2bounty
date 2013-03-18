@@ -47,7 +47,7 @@ class GuildMissionsPresenter extends BasePresenter {
             $this->searchedbossesRepository->createBossHunt($boss->id, $id);
         }
         
-        $this->flashMessage('Guild mission started.', 'success');
+        $this->flashMessage(_('Guild mission started.'), 'success');
         $this->redirect('GuildMissions:detail', $id);
     }
     
@@ -62,21 +62,21 @@ class GuildMissionsPresenter extends BasePresenter {
                 $this->searchedbossesRepository->markBossAsDead($hunt->id);
         }
         
-        $this->flashMessage('Guild mission finished.', 'success');
+        $this->flashMessage(_('Guild mission finished.'), 'success');
         $this->redirect('GuildMissions:default');
     }
 
     public function actionDelete($id)
     {
         $this->missionRepository->remove($id);
-        $this->flashMessage('Guild mission canceled.', 'success');
+        $this->flashMessage(_('Guild mission canceled.'), 'success');
         $this->redirect('GuildMissions:');
     }
     
     public function actionCancel($id)
     {
         $this->missionRepository->cancel($id);
-        $this->flashMessage('Guild mission canceled.', 'success');
+        $this->flashMessage(_('Guild mission canceled.'), 'success');
         $this->redirect('GuildMissions:');
     }
     
@@ -93,21 +93,27 @@ class GuildMissionsPresenter extends BasePresenter {
         $tiers = $this->tierRepository->findAll()->fetchPairs('id', 'name');
         $form->addSelect('tier', _('Tier:'), $tiers);
         
-        $form->addSubmit('submit', _('Plan this guild mission'));
+        $form->addSubmit('submit', _("Plan this mission"));
 
         $form->onSuccess[] = array($this, 'newGuildMission_submit');
         return $form;
     }
 
     public function newGuildMission_submit($form) {
-        $tier = $form['tier']->getValue();
-        $timestamp = $form['dtp_input1']->getValue();
-        
-        $guild = $this->guildmasterRepository->findBy(array('guildmaster.id' => $this->user->id))->select('guild:id AS ID')->fetch()->ID; 
-       
-        $this->missionRepository->createMission($timestamp, $guild, $tier, 1);
-        
-        //$this->flashMessage('Guild mission planned.', 'success');
+        try {
+            $tier = $form['tier']->getValue();
+            $timestamp = $form['dtp_input1']->getValue();
+
+            $guild = $this->guildmasterRepository->findBy(array('guildmaster.id' => $this->user->id))->select('guild:id AS ID')->fetch()->ID; 
+
+            $this->missionRepository->createMission($timestamp, $guild, $tier, 1);
+
+            $this->flashMessage(_('Guild mission planned.'), 'success');
+        }
+        catch(Exception $e)
+        {
+            $this->flashMessage(_('Failed to plan a guild mission.'), 'fail');
+        }
         
         $this->redirect('GuildMissions:');
     }
@@ -173,10 +179,24 @@ class GuildMissionsPresenter extends BasePresenter {
     
     public function renderDetail($id) {
         $this->template->mission = $this->missionRepository->findAll()->where('id', $id)->fetch();
-        $this->template->bosses = $this->bossRepository->findAll();
+        $this->template->allBosses = $this->bossRepository->findAll();
+        $this->template->bosses = $this->bossRepository->findAll()
+                ->where('searchedbosses:killed', 0)->order('timestamp')->group('id');
         $this->template->hunts = $this->searchedbossesRepository->findAll()
                 ->where('mission_id', $id)
                 ->where('chosen', 1);
+    }
+    
+    public function renderMember() {
+        $this->template->future_missions = $this->missionRepository->findAll()
+                ->where('mission.state_id = ?', 1)
+                ->where('guild.id', $this->user->getId())
+                ->order('mission.timestamp');
+        $this->template->missions_in_progress = $this->missionRepository->findAll()
+                ->where('mission.state_id = ? OR mission.state_id = ?', 2, 3)
+                ->where('guild.id', $this->user->getId())
+                ->order('mission.timestamp');
+        $this->template->bosses = $this->bossRepository->findAll();
     }
     
 }

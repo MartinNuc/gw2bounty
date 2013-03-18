@@ -51,8 +51,8 @@ class SignPresenter extends BasePresenter
 			$this->getUser()->login($values->username, $values->password);
                         $this->redirect('GuildMissions:');
 		} catch (Nette\Security\AuthenticationException $e) {
-			$form->addError($e->getMessage());
-                        $this->redirect('Sign:');
+			$this->flashMessage($e->getMessage());
+                        $this->redirect('Sign:in');
 			return;
 		}
 	}
@@ -64,11 +64,11 @@ class SignPresenter extends BasePresenter
                 $this->getUser()->setExpiration('+ 14 days', FALSE);
 
 		try {
-			$this->getUser()->login($values->accesscode, "");
+			$this->getUser()->login("", $values->accesscode);
                         $this->redirect('GuildMissions:');
 		} catch (Nette\Security\AuthenticationException $e) {
-			$form->addError($e->getMessage());
-                        $this->redirect('Sign:');
+			$this->flashMessage($e->getMessage());
+                        $this->redirect('Sign:in');
 			return;
 		}
 	}

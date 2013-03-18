@@ -1,5 +1,5 @@
 
 {block content}
-<h2>Bosses ({$mission->ref('tier')->name})</h2>
-<p>Choose {$mission->ref('tier')->numOfBosses} bosses which your guild has to kill.</p>
+<h2>{!_'Bosses'} ({$mission->ref('tier')->name})</h2>
+<p>{!_n"Choose %s bosses which your guild has to kill.", $mission->ref('tier')->numOfBosses}</p>
 {control killBossesForm}

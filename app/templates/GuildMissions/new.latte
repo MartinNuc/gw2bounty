@@ -9,7 +9,7 @@
 
 {form newGuildMissionForm}
     <div class="control-group">
-        <label class="control-label">{!_'Start:'}</label>
+        <label class="control-label">{!_'Start'}:</label>
         <div class="controls input-append date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
             <input size="16" type="text" value="" readonly>
             <span class="add-on"><i class="icon-remove"></i></span>
@@ -27,7 +27,7 @@
     <div class="control-group">
         <label class="control-label">&nbsp;</label>
         <div class="controls input-append">
-            {input submit class => 'btn btn-success'}
+            {input submit class => 'btn btn-success btn-large', value => _('Schedule this mission')}
         </div>
     </div>
 {/form}

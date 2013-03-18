@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `boss`;
 CREATE TABLE `boss` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `face_url` varchar(256) NOT NULL,
-  `map_url` varchar(256) NOT NULL,
-  `description_url` varchar(256) NOT NULL,
+  `faceurl` varchar(256) NOT NULL,
+  `mapurl` varchar(256) NOT NULL,
+  `descriptionurl` varchar(256) NOT NULL,
   `map` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
@@ -52,10 +52,16 @@ DROP TABLE IF EXISTS `guild`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `guild` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `member_password` varchar(45) NOT NULL,
+  `memberpassword` varchar(45) DEFAULT NULL,
   `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `server_id` int(10) unsigned NOT NULL,
+  `guildmaster_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_guild_1` (`server_id`),
+  KEY `FK_guild_2` (`guildmaster_id`),
+  CONSTRAINT `FK_guild_1` FOREIGN KEY (`server_id`) REFERENCES `server` (`id`),
+  CONSTRAINT `FK_guild_2` FOREIGN KEY (`guildmaster_id`) REFERENCES `guildmaster` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,28 +74,29 @@ LOCK TABLES `guild` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `guild_master`
+-- Table structure for table `guildmaster`
 --
 
-DROP TABLE IF EXISTS `guild_master`;
+DROP TABLE IF EXISTS `guildmaster`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `guild_master` (
+CREATE TABLE `guildmaster` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `login` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `game_nick` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `gamenick` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`login`,`gamenick`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `guild_master`
+-- Dumping data for table `guildmaster`
 --
 
-LOCK TABLES `guild_master` WRITE;
-/*!40000 ALTER TABLE `guild_master` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_master` ENABLE KEYS */;
+LOCK TABLES `guildmaster` WRITE;
+/*!40000 ALTER TABLE `guildmaster` DISABLE KEYS */;
+/*!40000 ALTER TABLE `guildmaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -102,8 +109,17 @@ DROP TABLE IF EXISTS `mission`;
 CREATE TABLE `mission` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `guild_id` int(10) unsigned NOT NULL,
+  `tier_id` int(10) unsigned NOT NULL,
+  `state_id` int(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `FK_mission_2` (`guild_id`),
+  KEY `FK_mission_3` (`state_id`),
+  KEY `FK_mission_1` (`tier_id`) USING BTREE,
+  CONSTRAINT `FK_mission_1` FOREIGN KEY (`tier_id`) REFERENCES `tier` (`id`),
+  CONSTRAINT `FK_mission_2` FOREIGN KEY (`guild_id`) REFERENCES `guild` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_mission_3` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,31 +156,38 @@ INSERT INTO `region` VALUES (1,'Europe'),(2,'North America');
 UNLOCK TABLES;
 
 --
--- Table structure for table `searched_bosses`
+-- Table structure for table `searchedbosses`
 --
 
-DROP TABLE IF EXISTS `searched_bosses`;
+DROP TABLE IF EXISTS `searchedbosses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `searched_bosses` (
+CREATE TABLE `searchedbosses` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `assignedpeople` int(10) unsigned NOT NULL,
-  `chosen` tinyint(1) NOT NULL,
-  `x` int(10) unsigned NOT NULL,
-  `y` int(10) unsigned NOT NULL,
-  `found` tinyint(1) NOT NULL,
-  `killed` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `chosen` tinyint(1) NOT NULL DEFAULT '0',
+  `x` int(10) unsigned DEFAULT NULL,
+  `y` int(10) unsigned DEFAULT NULL,
+  `killed` tinyint(1) NOT NULL DEFAULT '0',
+  `mission_id` int(10) unsigned NOT NULL,
+  `boss_id` int(10) unsigned NOT NULL,
+  `timestamp` datetime DEFAULT NULL,
+  `found` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `FK_searched_bosses_1` (`mission_id`),
+  KEY `FK_searched_bosses_2` (`boss_id`),
+  CONSTRAINT `FK_searched_bosses_1` FOREIGN KEY (`mission_id`) REFERENCES `mission` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_searched_bosses_2` FOREIGN KEY (`boss_id`) REFERENCES `boss` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `searched_bosses`
+-- Dumping data for table `searchedbosses`
 --
 
-LOCK TABLES `searched_bosses` WRITE;
-/*!40000 ALTER TABLE `searched_bosses` DISABLE KEYS */;
-/*!40000 ALTER TABLE `searched_bosses` ENABLE KEYS */;
+LOCK TABLES `searchedbosses` WRITE;
+/*!40000 ALTER TABLE `searchedbosses` DISABLE KEYS */;
+/*!40000 ALTER TABLE `searchedbosses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -177,8 +200,11 @@ DROP TABLE IF EXISTS `server`;
 CREATE TABLE `server` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `region_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_server_1` (`region_id`),
+  CONSTRAINT `FK_server_1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +213,32 @@ CREATE TABLE `server` (
 
 LOCK TABLES `server` WRITE;
 /*!40000 ALTER TABLE `server` DISABLE KEYS */;
+INSERT INTO `server` VALUES (1,'Aurora Glade',1),(2,'Anvil Rock',2),(3,'Blackgate',2),(4,'Borlis Pass',2),(5,'Crystal Desert',2),(6,'Darkhaven',2),(7,'Devona\'s Rest',2),(8,'Dragonbrand',2),(9,'Ehmry Bay',2),(10,'Eredon Terrace',2),(11,'Ferguson\'s Crossing',2),(12,'Fort Aspenwood',2),(13,'Gate of Madness',2),(14,'Henge of Denravi',2),(15,'Isle of Janthir',2),(16,'Jade Quarry',2),(17,'Kaineng',2),(18,'Maguuma',2),(19,'Northern Shiverpeaks ',2),(20,'Sanctum of Rall',2),(21,'Sea of Sorrows',2),(22,'Sorrow\'s Furnace ',2),(23,'Stormbluff Isle',2),(24,'Tarnished Coast',2),(25,'Yak\'s Bend',2),(26,'Blacktide',1),(41,'Desolation',1),(42,'Far Shiverpeaks',1),(43,'Fissure of Woe',1),(44,'Gandara',1),(45,'Gunnar\'s Hold',1),(46,'Piken Square',1),(47,'Ring of Fire',1),(48,'Ruins of Surmia',1),(49,'Seafarer\'s Rest',1),(50,'Underworld',1),(51,'Vabbi',1),(52,'Whiteside Ridge',1),(53,'Arborstone',1),(55,'Augury Rock ',1),(56,'Fort Ranik',1),(57,'Jade Sea',1),(58,'Vizunah Square',1),(59,'Abaddon\'s Mouth',1),(60,'Drakkar Lake',1),(61,'Dzagonur',1),(62,'Elona Reach',1),(63,'Kodash',1),(64,'Miller\'s Sound',1),(65,'Riverside',1),(66,'Baruch Bay ',1);
 /*!40000 ALTER TABLE `server` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `state`
+--
+
+DROP TABLE IF EXISTS `state`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `state` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `state`
+--
+
+LOCK TABLES `state` WRITE;
+/*!40000 ALTER TABLE `state` DISABLE KEYS */;
+INSERT INTO `state` VALUES (1,'planned'),(2,'searching for bosses'),(3,'started (killing)'),(4,'finished'),(5,'canceled');
+/*!40000 ALTER TABLE `state` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -224,4 +275,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-16 18:10:30
+-- Dump completed on 2013-03-18  6:06:18

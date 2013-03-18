@@ -12,4 +12,13 @@ class GuildRepository extends Repository
             'guildmaster_id' => $guildmasterid
         ));
     }
+    
+    public function changeGuildPassword($guildId, $password)
+    {
+        return $this->getTable()->where('id', $guildId)->update(array(
+            'memberpassword' => $password
+        ));
+    }
+    
+    
 }

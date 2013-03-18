@@ -1,28 +1,31 @@
 
 {block content}
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>{!_'Planned start'}</th>
-            <th>{!_'Guild'}</th>
-            <th>{!_'Guild master'}</th>
-            <th>{!_'Server'}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {foreach $missions as $mission}
-        <tr>
-            
-            <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M'}</td>
-            <td>{$mission->ref('guild')->name}</td>
-            <td>{$mission->ref('guild')->ref('guildmaster')->gamenick}</td>
-            <td>{$mission->ref('guild')->ref('server')->name}</td>
-        </tr>
-        {/foreach}
-    </tbody>
-</table>
+{if count($missions) > 0}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{!_'Planned start'}</th>
+                <th>{!_'Guild'}</th>
+                <th>{!_'Guild master'}</th>
+                <th>{!_'Server'}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $missions as $mission}
+            <tr>
 
+                <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M'}</td>
+                <td>{$mission->ref('guild')->name}</td>
+                <td>{$mission->ref('guild')->ref('guildmaster')->gamenick}</td>
+                <td>{$mission->ref('guild')->ref('server')->name}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+{else}
+<p>{!_'There are no upcoming guild missions.'}</p>
+{/if}
 {/block}
 {block scripts}
 {include #parent}
