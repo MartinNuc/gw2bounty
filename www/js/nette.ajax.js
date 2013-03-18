@@ -367,6 +367,7 @@ $.nette.ext('snippets', {
 					}
 				});
 			}
+                        redrawlocation();
 		}
 		this.before(snippets);
 	}

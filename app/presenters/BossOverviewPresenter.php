@@ -24,7 +24,7 @@ class BossOverviewPresenter extends BasePresenter {
     }
 
     public function renderDefault() {
-        $this->template->bosses = $this->bossRepository->lastSeen();
+        $this->template->bosses = $this->bossRepository->findAll();
     }
     
     public function actionDetail($id) {
@@ -32,7 +32,7 @@ class BossOverviewPresenter extends BasePresenter {
     }
 
     public function renderDetail($id) {
-        $this->template->boss = $this->bossRepository->lastSeen()->where(array("boss.id" => $id))->fetch();
+        $this->template->boss = $this->bossRepository->findAll()->where(array("boss.id" => $id))->fetch();
     }
 
 }

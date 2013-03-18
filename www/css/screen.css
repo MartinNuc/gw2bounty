@@ -1,3 +1,17 @@
+/* Override some defaults */
+body {
+    padding-top: 40px; 
+}
+
+.login-form {
+    margin-left: 65px;
+}
+
+legend {
+    margin-right: -50px;
+    font-weight: bold;
+    color: #404040;
+}
 
 .map
 {
@@ -10,10 +24,16 @@ body {
     padding-bottom: 60px;
 }
 
+.checkform > .control-group
+{
+    margin-bottom: 0px;
+}
+
 /* Custom container */
 .container {
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1800px;
+    width: 90%;
 }
 .container > hr {
     margin: 60px 0;

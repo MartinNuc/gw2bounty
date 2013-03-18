@@ -1,14 +1,16 @@
 {* This is the welcome page, you can delete it *}
 
 {block content}
-<div class="jumbotron">
-    <h1>{!_"Move bounty mission to the next level!"}</h1>
-<p class="lead">{!_"Assign guild members to search for bosses, have overview how the search progress, on the begining of the mission have map with exact position of found boss."}</p>
-<p>
-    <a class="btn btn-large btn-success" href="{plink RegisterGuildMaster:default}">
+<div class="row-fluid">
+    <div class="jumbotron span8 offset2">
+        <h1>{!_"Bounty missions on turbo!"}</h1>
+        <p class="lead">{!_"Assign guild members to search for bosses, have overview how the search progress, on the begining of the mission have map with exact position of bosses you need."}</p>
+        <p>
+            <a class="btn btn-large btn-success" href="{plink RegisterGuildMaster:default}">
         {!_"Join now"}
-    </a>
-</p>
+            </a>
+        </p>
+    </div>
 </div>
 {/block}
 

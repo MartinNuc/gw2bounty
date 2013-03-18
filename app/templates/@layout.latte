@@ -20,6 +20,7 @@
 
         <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
         <link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
+        <link href="{$basePath}/css/datetimepicker.css" rel="stylesheet" media="screen">
         <link rel="shortcut icon" href="{$basePath}/favicon.ico">
 	{block head}{/block}
     </head>
@@ -43,7 +44,7 @@
                         <ul class="nav">
                             {if $user->isLoggedIn() == false}
                                 <li {if $presenter->getName()=="Homepage"}class="active"{/if}>
-                                    <a href="{plink Homepage:}">{!_"Home"}</a>
+                                    <a href="{plink Homepage:}">{!_"Join now"}</a>
                                 </li>
                                 <li {if $presenter->getName()=="Calendar"}class="active"{/if}>
                                     <a href="{plink Calendar:}">{!_"Calendar"}</a>
@@ -78,14 +79,51 @@
 
 	{block scripts}
         <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="{$basePath}/js/jquery.livequery.js"></script>
         <script src="{$basePath}/js/netteForms.js"></script>
         <script src="{$basePath}/js/main.js"></script>
         <script src="{$basePath}/js/bootstrap.min.js"></script>
         <script src="{$basePath}/js/nette.ajax.js"></script>
-        <script>
-$(function () {
-    $.nette.init();
-});
+        <script src="{$basePath}/js/nextras.netteForms.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="{$basePath}/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+         <script>
+            $(function () {
+                $.nette.init();
+            });
+        </script>
+        <script type="text/javascript">
+            $('.form_datetime').datetimepicker({
+                //language:  'fr',
+                weekStart: 1,
+                todayBtn:  1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        forceParse: 0,
+                showMeridian: 1
+            });
+                /*$('.form_date').datetimepicker({
+                language:  'fr',
+                weekStart: 1,
+                todayBtn:  1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        minView: 2,
+                        forceParse: 0
+            });
+                $('.form_time').datetimepicker({
+                language:  'fr',
+                weekStart: 1,
+                todayBtn:  1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 1,
+                        minView: 0,
+                        maxView: 1,
+                        forceParse: 0
+            });*/
         </script>
 	{/block}
     </body>

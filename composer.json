@@ -22,7 +22,8 @@
 		"srigi/nette-visualpaginator": "dev-master",
 		"h4kuna/gettext-latte": "dev-master",
 		"dg/dibi": "dev-master",
-		"kdyby/bootstrap-form-renderer": "2.0.*"
+		"kdyby/bootstrap-form-renderer": "2.0.*",
+        "nextras/forms": "dev-master"
 	},
     "require-dev": {
         "nette/tester": "@dev"

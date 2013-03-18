@@ -1,0 +1,92 @@
+
+{block content}
+
+<h2>{!_'Info'}</h2>
+<ul>
+    <li>Progress: <strong>{$mission->ref('state')->description}</strong></li>
+    <li>Found: {$mission->related('searchedbosses')->Sum("searchedbosses.found")} / {$bosses->Count("*")}
+</ul>
+{if $mission->ref('state')->id == 1}
+    <a class="btn btn-primary" href="{plink GuildMissions:start, $mission->id}">Start searching for bosses</a>
+{elseif $mission->ref('state')->id == 2}
+    <a class="btn btn-primary" href="{plink GuildMissions:kill, $mission->id}">Go kill bosses</a>
+    <table class="table">
+       <thead>
+           <tr>
+               <th>{!_'Name'}</th>
+               <th>{!_'Location'}</th>
+               <th>{!_'Assigned people'}</th>
+               <th>{!_'Found?'}</th>
+           </tr>
+       </thead>
+       <tbody>
+           {foreach $mission->related('searchedbosses')->select('searchedbosses.*') as $boss}
+           <tr>
+               <td><a href="{plink BossSearch:default, $boss->id}">{$boss->ref('boss')->name}</a></td>
+               <td>{$boss->ref('boss')->map}</td>
+               <td>{$boss->assignedpeople}</td>
+               <td>
+                   {if $boss->found==1}
+                        <i class="icon-ok"></i>
+                   {else}
+                        &nbsp;
+                   {/if}
+               </td>
+           </tr>
+           {/foreach}
+       </tbody>
+   </table>
+{elseif $mission->ref('state')->id == 3}
+    <p>When you kill all bosses press following button and mission will be marked as complete.</p>
+    <a class="btn btn-primary" href="{plink GuildMissions:finish, $mission->id}">All bosses killed</a>
+    
+    {assign $i => 0}
+    {foreach $hunts as $hunt}
+        <h2>{$hunt->ref('boss')->name}</h2>
+        <div class="map">
+            {if $hunt->found != 0}
+                <img id="location{$i}" src="{$basePath}/images/dot.png" style="position: absolute; top: -500px; left: -500px" />
+            {/if}
+            <img id="map{$i}" src="{$hunt->ref('boss')->mapurl}">
+        </div>
+        {assign $i => $i + 1}
+    {/foreach}
+{/if}
+    
+{/block}
+{block scripts}
+{include #parent}
+<script>
+    {assign $i => 0}
+    {foreach $hunts as $hunt}
+        var t{$i} = new Image();
+        t{$i}.src = "{!$hunt->ref('boss')->mapurl}";
+        var original_x{$i} = t{$i}.width;
+        var x={$hunt->x};
+        var x={$hunt->y};
+        {assign $i => $i + 1}
+    {/foreach}
+    
+    function redrawlocation()
+    {
+       {assign $i => 0}
+       {foreach $hunts as $hunt}
+            var map{$i} = $("#map{$i}");
+            var offset{$i} = map{$i}.offset();
+            var img{$i} = document.getElementById('map{$i}'); 
+            ratio{$i} = img{$i}.width / original_x{$i} ;
+
+            $('#location').offset({ top: (offset{$i}.top+ratio{$i}*y{$i}-14*ratio{$i}), left: (offset{$i}.left+ratio{$i}*x{$i}-14*ratio{$i})});
+            {assign $i => $i + 1}
+        {/foreach}
+    }
+    
+    $(document).ready(function() {   
+      redrawlocation();
+      
+    $(window).resize(function() {
+        clearTimeout(this.id);
+        this.id = setTimeout(redrawlocation, 500);
+    });
+</script>
+{/block}

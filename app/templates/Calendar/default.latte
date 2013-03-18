@@ -14,7 +14,7 @@
         {foreach $missions as $mission}
         <tr>
             
-            <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M:%S'}</td>
+            <td>{$mission->timestamp|date:'%d.%m.%Y %H:%M'}</td>
             <td>{$mission->ref('guild')->name}</td>
             <td>{$mission->ref('guild')->ref('guildmaster')->gamenick}</td>
             <td>{$mission->ref('guild')->ref('server')->name}</td>
@@ -22,3 +22,8 @@
         {/foreach}
     </tbody>
 </table>
+
+{/block}
+{block scripts}
+{include #parent}
+{/block}

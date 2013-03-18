@@ -48,7 +48,7 @@ common:
     guildMasterRepository: Model\GuildmasterRepository(@nette.database.default)
     missionRepository: Model\MissionRepository(@nette.database.default)
     regionRepository: Model\RegionRepository(@nette.database.default)
-    searchedBossesRepository: Model\SearchedbossesRepository(@nette.database.default)
+    searchedbossesRepository: Model\SearchedbossesRepository(@nette.database.default)
     serverRepository: Model\ServerRepository(@nette.database.default)
     tierRepository: Model\TierRepository(@nette.database.default)
 

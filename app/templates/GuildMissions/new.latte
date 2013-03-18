@@ -1,7 +1,38 @@
 
 {block content}
+<p>
 <ul>
-    <li>{!_"Only guild master have to register. Other members will access this site without registration."}</li>
-    <li>{!_"In game character name is used for communication with other guilds."}</li>
+    <li>{!_"When you plan a guild mission other guilds are able to see it in their calendar overview."}</li>
+    <li>{!_"Your guild mates are able to see this guild mission as a planned if they are signed in."}</li>
 </ul>
-{control newGuildMissionForm}
+<br>
+
+{form newGuildMissionForm}
+    <div class="control-group">
+        <label class="control-label">{!_'Start:'}</label>
+        <div class="controls input-append date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+            <input size="16" type="text" value="" readonly>
+            <span class="add-on"><i class="icon-remove"></i></span>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{label tier/}</label>
+        <div class="controls input-append">
+            {input tier}
+        </div>
+    </div>
+
+    {input dtp_input1}
+    <div class="control-group">
+        <label class="control-label">&nbsp;</label>
+        <div class="controls input-append">
+            {input submit class => 'btn btn-success'}
+        </div>
+    </div>
+{/form}
+
+{/block}
+{block scripts}
+{include #parent}
+{/block}

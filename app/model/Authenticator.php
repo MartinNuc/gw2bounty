@@ -39,18 +39,30 @@ class Authenticator extends Nette\Object implements Security\IAuthenticator
 	public function authenticate(array $credentials)
 	{
 		list($username, $password) = $credentials;
-		$row = $this->database->table('guildmaster')->where('login', $username)->fetch();
+                
+                if ($username == "")
+                {
+                    // login for guild members
+                    $row = $this->database->table('guild')->where('memberpassword', $password)->fetch();
+                    if (count($row) > 0)
+                        return new Security\Identity($row->id, "member", $row->toArray());
+                    else
+                        throw new Security\AuthenticationException('The access code is incorrect.', self::IDENTITY_NOT_FOUND);
+                }
+                else
+                {
+                    $row = $this->database->table('guildmaster')->where('login', $username)->fetch();
 
-		if (!$row) {
-			throw new Security\AuthenticationException('The username or password is incorrect.', self::IDENTITY_NOT_FOUND);
-		}
+                    if (!$row) {
+                            throw new Security\AuthenticationException('The username or password is incorrect.', self::IDENTITY_NOT_FOUND);
+                    }
 
-		if ($row->password !== $this->calculateHash($password, $row->password)) {
-			throw new Security\AuthenticationException('The password or password is incorrect.', self::INVALID_CREDENTIAL);
-		}
+                    if ($row->password !== $this->calculateHash($password, $row->password)) {
+                            throw new Security\AuthenticationException('The password or password is incorrect.', self::INVALID_CREDENTIAL);
+                    }
 
-		unset($row->password);
-		return new Security\Identity($row->id, "guildmaster", $row->toArray());
+                    unset($row->password);
+                }
 	}
 
 	/**

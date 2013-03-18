@@ -13,8 +13,17 @@
         <tr>
             <td><a href="{plink BossOverview:detail, $boss->id}">{$boss->name}</a></td>
             <td>{$boss->map}</td>
-            <td>{$boss->last_seen|date:'%d.%m.%Y %H:%M:%S'}</td>
+            <td>
+                {if isset($boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->timestamp)}
+                    {$boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->timestamp|date:'%d.%m.%Y %H:%M'}
+                {/if}
+            </td>
         </tr>
         {/foreach}
     </tbody>
 </table>
+
+{/block}
+{block scripts}
+{include #parent}
+{/block}

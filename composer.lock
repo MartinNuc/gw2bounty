@@ -1,5 +1,5 @@
 {
-    "hash": "86308b46e152920b97b342b192092a30",
+    "hash": "47e28316ddfd6c2fc671ab902c0403f4",
     "packages": [
         {
             "name": "dg/dibi",
@@ -216,6 +216,53 @@
             "time": "2013-03-08 15:44:35"
         },
         {
+            "name": "nextras/forms",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nextras/forms.git",
+                "reference": "c14424a8b77d7cbae3e07f50923078db8eaec40a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nextras/forms/zipball/c14424a8b77d7cbae3e07f50923078db8eaec40a",
+                "reference": "c14424a8b77d7cbae3e07f50923078db8eaec40a",
+                "shasum": ""
+            },
+            "require": {
+                "nette/nette": ">=2.0.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Nextras\\Forms": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                },
+                {
+                    "name": "Nextras Community",
+                    "homepage": "https://github.com/nextras/forms/graphs/contributors"
+                }
+            ],
+            "description": "Extra form components for Nette Framework.",
+            "keywords": [
+                "form",
+                "nette"
+            ],
+            "time": "2013-03-04 18:27:47"
+        },
+        {
             "name": "srigi/nette-visualpaginator",
             "version": "dev-master",
             "source": {
@@ -259,59 +306,7 @@
             "time": "2013-02-21 16:57:03"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "nette/tester",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/tester.git",
-                "reference": "523bd9930485c690e50db592034d412f3bf35abe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/523bd9930485c690e50db592034d412f3bf35abe",
-                "reference": "523bd9930485c690e50db592034d412f3bf35abe",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "bin": [
-                "Tester/tester"
-            ],
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Tester/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "http://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "http://nette.org/contributors"
-                }
-            ],
-            "description": "An easy-to-use PHP Unit Testing framework.",
-            "homepage": "http://nette.org",
-            "keywords": [
-                "nette",
-                "testing",
-                "unit"
-            ],
-            "time": "2013-03-14 02:11:44"
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
@@ -320,6 +315,7 @@
         "srigi/nette-visualpaginator": 20,
         "h4kuna/gettext-latte": 20,
         "dg/dibi": 20,
+        "nextras/forms": 20,
         "nette/tester": 20
     },
     "platform": {

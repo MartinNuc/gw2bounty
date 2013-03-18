@@ -7,13 +7,14 @@
     <div class="span6 offset1">
         <h3>Info</h3>
         <p>
-            Map: {$boss->map}<br>
-            {if $boss->last_seen != NULL}
-                Last seen: {$boss->last_seen|date:'%d.%m.%Y %H:%M:%S'}<br>
+            <br>Map: {$boss->map}
+            {if isset($boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->timestamp)}
+                <br>Last seen:
+                {$boss->related('searchedbosses')->select('searchedbosses.timestamp')->where('searchedbosses.found=1')->order('searchedbosses.timestamp')->limit(1)->fetch()->timestamp|date:'%d.%m.%Y %H:%M'}
             {else}
-                Last seen: -no data-<br>
+                <br>Last seen: -no data-
             {/if}
-            Dufny link: <a target="_blank" href="{$boss->descriptionurl}">{$boss->descriptionurl}</a>
+            <br>Dulfy link: <a target="_blank" href="{$boss->descriptionurl}">{$boss->descriptionurl}</a>
         </p>
     </div>
 </div>
@@ -21,3 +22,8 @@
 <div class="map">
     <img src="{$boss->mapurl}">
 </div>
+
+{/block}
+{block scripts}
+{include #parent}
+{/block}
